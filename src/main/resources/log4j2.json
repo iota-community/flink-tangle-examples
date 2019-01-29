@@ -1,0 +1,35 @@
+{
+  "configuration": {
+    "status": "error",
+    "name": "RoutingTest",
+    "packages": "org.apache.logging.log4j.test",
+    "properties": {
+      "property": {
+        "name": "filename",
+        "value": "target/rolling1/rollingtest-$${sd:type}.log"
+      }
+    },
+    "ThresholdFilter": {
+      "level": "debug"
+    },
+    "appenders": {
+      "Console": {
+        "name": "STDOUT",
+        "PatternLayout": {
+          "pattern": "%d %p %c{1.} [%t] %m%n"
+        },
+        "ThresholdFilter": {
+          "level": "debug"
+        }
+      }
+    },
+    "loggers": {
+      "root": {
+        "level": "debug",
+        "AppenderRef": {
+          "ref": "STDOUT"
+        }
+      }
+    }
+  }
+}
