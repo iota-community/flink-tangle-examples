@@ -7,7 +7,7 @@ name := "FlinkIRIStream"
 
 version := "0.1-SNAPSHOT"
 
-organization := "com.gameole"
+organization := "org.iota"
 
 ThisBuild / scalaVersion := "2.11.12"
 
@@ -16,7 +16,7 @@ val flinkVersion = "1.4.2"
 val flinkDependencies = Seq(
   "org.apache.flink" %% "flink-scala" % flinkVersion % "provided",
   "org.apache.flink" %% "flink-streaming-scala" % flinkVersion % "provided",
-  "com.gameole" %% "iri-stream-provider" % "0.0.1",
+  "org.iota" %% "tangle-stream-provider" % "0.0.1",
   "org.apache.logging.log4j" %% "log4j-api-scala" % "11.0",
   "org.apache.logging.log4j" % "log4j-api" % "2.8.2",
   "org.apache.logging.log4j" % "log4j-core" % "2.8.2" % Runtime,
@@ -28,14 +28,13 @@ lazy val root = (project in file(".")).
     libraryDependencies ++= flinkDependencies
   )
 
-assembly / mainClass := Some("com.gameole.Job")
+assembly / mainClass := Some("org.iota.MostUsedAddresses")
 
 // make run command include the provided dependencies
 Compile / run  := Defaults.runTask(Compile / fullClasspath,
                                    Compile / run / mainClass,
                                    Compile / run / runner
                                   ).evaluated
-
 
 
 // stays inside the sbt console when we press "ctrl-c" while a Flink programme executes with "run" or "runMain"

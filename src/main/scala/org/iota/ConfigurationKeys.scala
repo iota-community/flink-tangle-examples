@@ -1,4 +1,4 @@
-package com.gameole
+package org.iota
 
 object ConfigurationKeys {
   object ZeroMQ {

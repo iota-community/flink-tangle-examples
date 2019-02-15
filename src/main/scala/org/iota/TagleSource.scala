@@ -1,16 +1,16 @@
-package com.gameole
+package org.iota
 
-import com.gameole.iri.stream.{ServerConnectionConf, ZeroMQMessage, ZeroMQMessageParser}
 import org.apache.flink.api.common.functions.StoppableFunction
 import org.apache.flink.configuration.Configuration
 import org.apache.flink.streaming.api.functions.source.{RichSourceFunction, SourceFunction}
+import org.iota.tangle.stream.{ZeroMQMessage, ZeroMQMessageParser}
 import org.zeromq.ZMQ
 import org.zeromq.ZMQ.Socket
-
-import scala.annotation.tailrec
 import scalapb.GeneratedMessage
 
-class IRISource(host: String, port: Int, topic: String) extends RichSourceFunction[GeneratedMessage] with StoppableFunction{
+import scala.annotation.tailrec
+
+class TagleSource(host: String, port: Int, topic: String) extends RichSourceFunction[GeneratedMessage] with StoppableFunction{
   private var subscriber: Socket = _
   private var context: ZMQ.Context = _
   private var parser: ZeroMQMessageParser = _
