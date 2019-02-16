@@ -28,11 +28,14 @@ object MostUsedAddresses {
         case _ => None
       })
       .map(_.get)
+      .filter(_.amount >= 1000000L)
       .map(e => (e.address, 1L))
       .keyBy(_._1)
-      .timeWindow(Time.seconds(60), Time.seconds(30))
+      .timeWindow(Time.minutes(60), Time.seconds(30))
+      .aggregate(new AddressCountAggregator)
+      .timeWindowAll(Time.seconds(5))
       .aggregate(new MostUsedAddressesAggregator(10))
-        .print()
+      .print()
 
     // execute program
     env.execute("Most used addresses")
