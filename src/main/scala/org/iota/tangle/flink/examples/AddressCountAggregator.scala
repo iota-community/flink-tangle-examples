@@ -1,4 +1,4 @@
-package org.examples
+package org.iota.tangle.flink.examples
 
 import org.apache.flink.api.common.functions.AggregateFunction
 

@@ -1,9 +1,10 @@
-package org.examples
+package org.iota.tangle.flink.examples
 
 import com.typesafe.config.ConfigFactory
 import org.apache.flink.streaming.api.scala._
 import org.apache.flink.streaming.api.scala.StreamExecutionEnvironment
 import org.apache.flink.streaming.api.windowing.time.Time
+import org.iota.tangle.flink.TagleSource
 import org.iota.tangle.stream.messages.transactionMessages.UnconfirmedTransactionMessage
 
 object MostUsedAddresses {
@@ -28,7 +29,6 @@ object MostUsedAddresses {
         case _ => None
       })
       .map(_.get)
-      .filter(_.amount >= 1000000L)
       .map(e => (e.address, 1L))
       .keyBy(_._1)
       .timeWindow(Time.minutes(60), Time.seconds(30))

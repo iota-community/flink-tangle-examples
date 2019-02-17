@@ -1,14 +1,13 @@
-package org.examples
+package org.iota.tangle.flink.examples
 
 import com.typesafe.config.ConfigFactory
 import org.apache.flink.streaming.api.scala.StreamExecutionEnvironment
 import org.apache.flink.streaming.api.windowing.time.Time
 import org.iota.tangle.stream.messages.transactionMessages.UnconfirmedTransactionMessage
 import org.apache.flink.streaming.api.scala._
-import org.iota.TagleSource
-import org.iota.tangle.flink.{BundleAggregator, BundleSplitProcessor}
+import org.iota.tangle.flink.{BundleAggregator, BundleSplitProcessor, TagleSource}
 
-object BundleAggregationExample {
+object BundleAggregation {
 
   def main(args: Array[String]) {
     val unconfirmedMessageDescriptorName = UnconfirmedTransactionMessage.scalaDescriptor.fullName
