@@ -1,4 +1,4 @@
-package org.iota
+package org.examples
 
 import com.typesafe.config.ConfigFactory
 import org.apache.flink.streaming.api.scala._
