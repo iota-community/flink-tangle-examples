@@ -1,6 +1,6 @@
 # Tangle Streaming examples in Flink
 
-**_Note:_** This project is based on the (flink-tangle-source)[https://github.com/Citrullin/flink-tangle-source] library.
+**_Note:_** This project is based on the [flink-tangle-source](https://github.com/Citrullin/flink-tangle-source) library.
 This is a proof of concept and should not be used in production environments. 
 Feel free to contribute, so that it eventually becomes production ready.
 
@@ -21,5 +21,5 @@ SBT will ask you which application you want to run. Just select the application 
 
 ### The ZeroMQ server is not available
 
-(TangleBeat)[http://tanglebeat.com/page/internals] has a list of public tangle ZMQ server. 
+[TangleBeat](http://tanglebeat.com/page/internals) has a list of public tangle ZMQ server. 
 Just pick one and change the application.conf in src/main/resources
