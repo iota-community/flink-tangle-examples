@@ -8,7 +8,21 @@ This project has a few tangle streaming examples in [Flink](https://flink.apache
 
 ## Use the examples
 
-You need to install java 8 & [sbt](https://www.scala-sbt.org/), before you can execute the examples.
+### 1. Install java & sbt
+
+You need to install java >= 8 & [sbt](https://www.scala-sbt.org/), before you can execute the examples.
+
+### 2. Build & publish dependencies
+
+Since this library is not production ready, you need to build & publish the dependencies locally. 
+You can find the description about the process in the repositories:
+- [Tangle Stream provider repository](https://github.com/Citrullin/tangle-streaming)
+- [Flink Tangle source repository](https://github.com/Citrullin/flink-tangle-source)
+
+
+### 3. Run the application
+
+If the dependencies are available, you can run the example in the following way:
 
 ```bash
 sbt run
