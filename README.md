@@ -8,7 +8,7 @@ This project has a few tangle streaming examples in [Flink](https://flink.apache
 
 ## Use the examples
 
-You need to install java 8 & (sbt)[https://www.scala-sbt.org/], before you can execute the examples.
+You need to install java 8 & [sbt](https://www.scala-sbt.org/), before you can execute the examples.
 
 ```bash
 sbt run
