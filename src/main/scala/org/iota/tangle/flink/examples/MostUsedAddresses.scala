@@ -22,20 +22,29 @@ object MostUsedAddresses {
 
     val stream = env.addSource(new TagleSource(zeroMQHost, zeroMQPort, ""))
 
-    stream
+    val unconfirmedTransactionStream = stream
       .filter(_.companion.scalaDescriptor.fullName == unconfirmedMessageDescriptorName)
       .map(_ match {
         case m: UnconfirmedTransactionMessage => Some(m)
         case _ => None
-      })
-      .map(_.get)
-      .map(e => (e.address, 1L))
-      .keyBy(_._1)
-      .timeWindow(Time.minutes(60), Time.seconds(30))
-      .aggregate(new AddressCountAggregator)
-      .timeWindowAll(Time.seconds(5))
-      .aggregate(new MostUsedAddressesAggregator(10))
-      .print()
+      }).map(_.get)
+
+    val addressOnlyStream = unconfirmedTransactionStream.map(e => (e.address, 1L))
+
+    val keyedStream = addressOnlyStream.keyBy(_._1)
+
+    val keyedTimedWindow = keyedStream.timeWindow(Time.minutes(60), Time.seconds(30))
+
+    //val aggregatedKeyedTimeWindow = keyedTimedWindow.aggregate(new AddressCountAggregator)
+    val aggregatedKeyedTimeWindow = keyedTimedWindow.reduce((a, b) => (a._1, a._2 + b._2))
+
+
+    val timeWindowAll = aggregatedKeyedTimeWindow
+        .timeWindowAll(Time.seconds(1))
+
+    val mostUsedStream = timeWindowAll.aggregate(new MostUsedAddressesAggregator(10))
+
+    mostUsedStream.print()
 
     // execute program
     env.execute("Most used addresses")
