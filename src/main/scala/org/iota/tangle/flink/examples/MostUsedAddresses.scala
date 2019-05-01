@@ -4,7 +4,7 @@ import com.typesafe.config.ConfigFactory
 import org.apache.flink.streaming.api.scala._
 import org.apache.flink.streaming.api.scala.StreamExecutionEnvironment
 import org.apache.flink.streaming.api.windowing.time.Time
-import org.iota.tangle.flink.TagleSource
+import org.iota.tangle.flink.TangleSource
 import org.iota.tangle.stream.messages.transactionMessages.UnconfirmedTransactionMessage
 
 object MostUsedAddresses {
@@ -20,7 +20,7 @@ object MostUsedAddresses {
 
     val env: StreamExecutionEnvironment = StreamExecutionEnvironment.getExecutionEnvironment
 
-    val stream = env.addSource(new TagleSource(zeroMQHost, zeroMQPort, ""))
+    val stream = env.addSource(new TangleSource(zeroMQHost, zeroMQPort, ""))
 
     val unconfirmedTransactionStream = stream
       .filter(_.companion.scalaDescriptor.fullName == unconfirmedMessageDescriptorName)
