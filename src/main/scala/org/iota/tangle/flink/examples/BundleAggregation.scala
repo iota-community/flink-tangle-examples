@@ -5,7 +5,7 @@ import org.apache.flink.streaming.api.scala.StreamExecutionEnvironment
 import org.apache.flink.streaming.api.windowing.time.Time
 import org.iota.tangle.stream.messages.transactionMessages.UnconfirmedTransactionMessage
 import org.apache.flink.streaming.api.scala._
-import org.iota.tangle.flink.{BundleAggregator, BundleSplitProcessor, TagleSource}
+import org.iota.tangle.flink.{BundleAggregator, BundleSplitProcessor, TangleSource}
 
 object BundleAggregation {
 
@@ -19,7 +19,7 @@ object BundleAggregation {
 
     val env: StreamExecutionEnvironment = StreamExecutionEnvironment.getExecutionEnvironment
 
-    val stream = env.addSource(new TagleSource(zeroMQHost, zeroMQPort, ""))
+    val stream = env.addSource(new TangleSource(zeroMQHost, zeroMQPort, ""))
 
     stream
       .filter(_.companion.scalaDescriptor.fullName == unconfirmedMessageDescriptorName)
